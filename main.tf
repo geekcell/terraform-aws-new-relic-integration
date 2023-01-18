@@ -10,7 +10,7 @@ data "aws_caller_identity" "current" {}
 # INTEGRATION ROLE
 #
 module "iam_integration_role" {
-  source = "../terraform-aws-iam-role"
+  source = "github.com/geekcell/terraform-aws-iam-role?ref=v1.0"
 
   name        = "${var.name}-integration"
   description = "Role for New Relic integration."
@@ -36,7 +36,7 @@ module "iam_integration_role" {
 # FIREHOSE ROLE
 #
 module "iam_firehose_role" {
-  source = "../terraform-aws-iam-role"
+  source = "github.com/geekcell/terraform-aws-iam-role?ref=v1.0"
 
   name        = "${var.name}-firehose"
   description = "Role for New Relic Firehose."
@@ -51,7 +51,7 @@ module "iam_firehose_role" {
 }
 
 module "iam_firehose_policy" {
-  source = "../terraform-aws-iam-policy"
+  source = "github.com/geekcell/terraform-aws-iam-policy?ref=v1.0"
 
   name        = "${var.name}-firehose"
   description = "Policy for New Relic Firehose."
@@ -85,7 +85,7 @@ module "iam_firehose_policy" {
 # METRIC STREAM ROLE
 #
 module "iam_metric_stream_role" {
-  source = "../terraform-aws-iam-role"
+  source = "github.com/geekcell/terraform-aws-iam-role?ref=v1.0"
 
   name        = "${var.name}-metric-stream"
   description = "Role for New Relic Metric Stream."
@@ -100,7 +100,7 @@ module "iam_metric_stream_role" {
 }
 
 module "iam_metric_stream_policy" {
-  source = "../terraform-aws-iam-policy"
+  source = "github.com/geekcell/terraform-aws-iam-policy?ref=v1.0"
 
   name        = "${var.name}-metric-stream"
   description = "Policy for New Relic Metric Stream."
