@@ -25,7 +25,7 @@ resource "aws_secretsmanager_secret" "main" {
 # The secret is created with the following structure so it can be used by Lambda as well:
 # https://github.com/newrelic/newrelic-lambda-extension/blob/main/credentials/credentials.go#L18
 resource "aws_secretsmanager_secret_version" "main" {
-  secret_id     = aws_secretsmanager_secret.main.id
+  secret_id = aws_secretsmanager_secret.main.id
   secret_string = jsonencode({
     NrAccountId = var.new_relic_account_id
     LicenseKey  = newrelic_api_access_key.main.key
@@ -39,16 +39,17 @@ resource "aws_secretsmanager_secret_version" "main" {
 module "read_only_iam_policy" {
   count = var.create_iam_policy_read_only ? 1 : 0
 
-  source = "github.com/geekcell/terraform-aws-iam-policy?ref=v1"
+  source  = "geekcell/iam-policy/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name            = coalesce(var.iam_policy_read_only_name, "${aws_secretsmanager_secret.main.name}-read-only")
   use_name_prefix = var.iam_policy_read_only_use_prefix
 
   description = "Read only policy for New Relic SSM Secret."
-  statements  = [
+  statements = [
     {
-      sid     = "AllowReadSecret"
-      effect  = "Allow"
+      sid    = "AllowReadSecret"
+      effect = "Allow"
       actions = [
         "secretsmanager:GetSecretValue"
       ]

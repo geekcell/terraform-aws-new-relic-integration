@@ -40,6 +40,6 @@ No outputs.
 
 ## Resources
 
-- resource.aws_ecs_service.main (modules/fargate_php_daemon/main.tf#36)
-- resource.aws_service_discovery_service.main (modules/fargate_php_daemon/main.tf#66)
+- resource.aws_ecs_service.main (modules/fargate_php_daemon/main.tf#38)
+- resource.aws_service_discovery_service.main (modules/fargate_php_daemon/main.tf#68)
 <!-- END_TF_DOCS -->
