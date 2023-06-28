@@ -38,8 +38,8 @@
 Terraform module which creates resources to integrate AWS with New Relic by using Kinesis Firehose streams. Supports
 VPC Flow logs. Comes with the following sub modules:
 
-[Fargate PHP Daemon](./modules/fargate\_php\_daemon/README.md)
-[SSM License Key](./modules/ssm\_license\_key/README.md)
+* [Fargate PHP Daemon](./modules/fargate\_php\_daemon/README.md)
+* [SSM License Key](./modules/ssm\_license\_key/README.md)
 
 ## Inputs
 
@@ -75,16 +75,16 @@ No outputs.
 
 ## Resources
 
-- resource.aws_cloudwatch_metric_stream.main (main.tf#140)
-- resource.aws_flow_log.main (main.tf#289)
-- resource.aws_kinesis_firehose_delivery_stream.cloudwatch_metrics (main.tf#152)
-- resource.aws_kinesis_firehose_delivery_stream.vpc_flow_logs (main.tf#188)
-- resource.aws_s3_bucket.main (main.tf#256)
-- resource.aws_s3_bucket_acl.main (main.tf#262)
-- resource.aws_s3_bucket_public_access_block.main (main.tf#277)
-- resource.aws_s3_bucket_server_side_encryption_configuration.main (main.tf#267)
-- resource.newrelic_api_access_key.main (main.tf#306)
-- resource.newrelic_cloud_aws_link_account.main (main.tf#320)
+- resource.aws_cloudwatch_metric_stream.main (main.tf#145)
+- resource.aws_flow_log.main (main.tf#294)
+- resource.aws_kinesis_firehose_delivery_stream.cloudwatch_metrics (main.tf#157)
+- resource.aws_kinesis_firehose_delivery_stream.vpc_flow_logs (main.tf#193)
+- resource.aws_s3_bucket.main (main.tf#261)
+- resource.aws_s3_bucket_acl.main (main.tf#267)
+- resource.aws_s3_bucket_public_access_block.main (main.tf#282)
+- resource.aws_s3_bucket_server_side_encryption_configuration.main (main.tf#272)
+- resource.newrelic_api_access_key.main (main.tf#311)
+- resource.newrelic_cloud_aws_link_account.main (main.tf#325)
 - data source.aws_caller_identity.current (main.tf#10)
 
 # Examples

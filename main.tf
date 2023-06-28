@@ -4,8 +4,8 @@
  * Terraform module which creates resources to integrate AWS with New Relic by using Kinesis Firehose streams. Supports
  * VPC Flow logs. Comes with the following sub modules:
  *
- * [Fargate PHP Daemon](./modules/fargate_php_daemon/README.md)
- * [SSM License Key](./modules/ssm_license_key/README.md)
+ * * [Fargate PHP Daemon](./modules/fargate_php_daemon/README.md)
+ * * [SSM License Key](./modules/ssm_license_key/README.md)
  */
 data "aws_caller_identity" "current" {}
 
@@ -13,7 +13,8 @@ data "aws_caller_identity" "current" {}
 # INTEGRATION ROLE
 #
 module "iam_integration_role" {
-  source = "github.com/geekcell/terraform-aws-iam-role?ref=v1"
+  source  = "geekcell/iam-role/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name            = coalesce(var.ingeration_role_name, "${var.name}-integration")
   use_name_prefix = var.integration_role_name_prefix
@@ -41,7 +42,8 @@ module "iam_integration_role" {
 # FIREHOSE ROLE
 #
 module "iam_firehose_role" {
-  source = "github.com/geekcell/terraform-aws-iam-role?ref=v1"
+  source  = "geekcell/iam-role/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name            = coalesce(var.firehose_role_name, "${var.name}-firehose")
   use_name_prefix = var.firehose_role_name_prefix
@@ -58,7 +60,8 @@ module "iam_firehose_role" {
 }
 
 module "iam_firehose_policy" {
-  source = "github.com/geekcell/terraform-aws-iam-policy?ref=v1"
+  source  = "geekcell/iam-policy/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name            = "${var.name}-firehose"
   use_name_prefix = var.firehose_role_name_prefix
@@ -94,7 +97,8 @@ module "iam_firehose_policy" {
 # METRIC STREAM ROLE
 #
 module "iam_metric_stream_role" {
-  source = "github.com/geekcell/terraform-aws-iam-role?ref=v1"
+  source  = "geekcell/iam-role/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name            = coalesce(var.metric_stream_role_name, "${var.name}-metric-stream")
   use_name_prefix = var.metric_stream_role_name_prefix
@@ -111,7 +115,8 @@ module "iam_metric_stream_role" {
 }
 
 module "iam_metric_stream_policy" {
-  source = "github.com/geekcell/terraform-aws-iam-policy?ref=v1"
+  source  = "geekcell/iam-policy/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name            = "${var.name}-metric-stream"
   use_name_prefix = var.metric_stream_role_name_prefix
