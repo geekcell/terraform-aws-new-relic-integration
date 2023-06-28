@@ -7,7 +7,8 @@
  * https://docs.newrelic.com/docs/apm/agents/php-agent/advanced-installation/docker-other-container-environments-install-php-agent/
  */
 module "container_definition" {
-  source = "github.com/geekcell/terraform-aws-ecs-container-definition?ref=main"
+  source  = "geekcell/ecs-container-definition/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name  = var.container_name
   image = var.container_image
@@ -21,7 +22,8 @@ module "container_definition" {
 }
 
 module "task_definition" {
-  source = "github.com/geekcell/terraform-aws-ecs-task-definition.git?ref=main"
+  source  = "geekcell/ecs-task-definition/aws"
+  version = ">= 1.0.0, < 2.0.0"
 
   name                  = var.task_definition_name
   container_definitions = [module.container_definition.hcl]

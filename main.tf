@@ -2,7 +2,10 @@
  * # Terraform AWS New Relic Integration
  *
  * Terraform module which creates resources to integrate AWS with New Relic by using Kinesis Firehose streams. Supports
- * VPC Flow logs.
+ * VPC Flow logs. Comes with the following sub modules:
+ *
+ * [Fargate PHP Daemon](./modules/fargate_php_daemon/README.md)
+ * [SSM License Key](./modules/ssm_license_key/README.md)
  */
 data "aws_caller_identity" "current" {}
 
@@ -15,13 +18,13 @@ module "iam_integration_role" {
   name            = coalesce(var.ingeration_role_name, "${var.name}-integration")
   use_name_prefix = var.integration_role_name_prefix
 
-  description  = "Role for New Relic integration."
-  policy_arns  = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
+  description = "Role for New Relic integration."
+  policy_arns = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
   assume_roles = {
     "AWS" : {
       actions     = ["sts:AssumeRole"]
       identifiers = ["754728514883"] # Unique identifier for New Relic account on AWS
-      conditions  = [
+      conditions = [
         {
           test     = "StringEquals"
           variable = "sts:ExternalId"
@@ -43,8 +46,8 @@ module "iam_firehose_role" {
   name            = coalesce(var.firehose_role_name, "${var.name}-firehose")
   use_name_prefix = var.firehose_role_name_prefix
 
-  description  = "Role for New Relic Firehose."
-  policy_arns  = [module.iam_firehose_policy.arn]
+  description = "Role for New Relic Firehose."
+  policy_arns = [module.iam_firehose_policy.arn]
   assume_roles = {
     "Service" : {
       identifiers = ["firehose.amazonaws.com"]
@@ -61,10 +64,10 @@ module "iam_firehose_policy" {
   use_name_prefix = var.firehose_role_name_prefix
 
   description = "Policy for New Relic Firehose."
-  statements  = [
+  statements = [
     {
-      sid     = "BucketList"
-      effect  = "Allow"
+      sid    = "BucketList"
+      effect = "Allow"
       actions = [
         "s3:GetBucketLocation",
         "s3:ListBucket"
@@ -72,8 +75,8 @@ module "iam_firehose_policy" {
       resources = [aws_s3_bucket.main.arn]
     },
     {
-      sid     = "BucketWrite"
-      effect  = "Allow"
+      sid    = "BucketWrite"
+      effect = "Allow"
       actions = [
         "s3:AbortMultipartUpload",
         "s3:GetObject",
@@ -96,8 +99,8 @@ module "iam_metric_stream_role" {
   name            = coalesce(var.metric_stream_role_name, "${var.name}-metric-stream")
   use_name_prefix = var.metric_stream_role_name_prefix
 
-  description  = "Role for New Relic Metric Stream."
-  policy_arns  = [module.iam_metric_stream_policy.arn]
+  description = "Role for New Relic Metric Stream."
+  policy_arns = [module.iam_metric_stream_policy.arn]
   assume_roles = {
     "Service" : {
       identifiers = ["streams.metrics.cloudwatch.amazonaws.com"]
@@ -114,10 +117,10 @@ module "iam_metric_stream_policy" {
   use_name_prefix = var.metric_stream_role_name_prefix
 
   description = "Policy for New Relic Metric Stream."
-  statements  = [
+  statements = [
     {
-      sid     = "FirehoseWrite"
-      effect  = "Allow"
+      sid    = "FirehoseWrite"
+      effect = "Allow"
       actions = [
         "firehose:PutRecord",
         "firehose:PutRecordBatch"
