@@ -11,7 +11,7 @@ https://docs.newrelic.com/docs/apm/agents/php-agent/advanced-installation/docker
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_container_host_port"></a> [container\_host\_port](#input\_container\_host\_port) | The external port that the container can be connected to. | `number` | `31339` | no |
-| <a name="input_container_image"></a> [container\_image](#input\_container\_image) | The image used to start the container. | `string` | `"newrelic/php-daemon:10.7.0"` | no |
+| <a name="input_container_image"></a> [container\_image](#input\_container\_image) | The image used to start the container. | `string` | `"newrelic/php-daemon:10.11.0"` | no |
 | <a name="input_container_name"></a> [container\_name](#input\_container\_name) | The name of the container in the task definition. | `string` | `"new-relic"` | no |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | The port that the container is listening on. | `number` | `31339` | no |
 | <a name="input_ecs_cluster_name"></a> [ecs\_cluster\_name](#input\_ecs\_cluster\_name) | The name of the ECS cluster to run the task in. | `string` | n/a | yes |

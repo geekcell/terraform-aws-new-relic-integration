@@ -8,7 +8,7 @@ variable "tags" {
 ## CONTAINER
 variable "container_image" {
   description = "The image used to start the container."
-  default     = "newrelic/php-daemon:10.7.0"
+  default     = "newrelic/php-daemon:10.11.0"
   type        = string
 }
 
