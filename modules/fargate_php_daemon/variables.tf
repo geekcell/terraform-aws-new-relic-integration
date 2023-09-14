@@ -72,7 +72,8 @@ variable "ecs_security_groups" {
 }
 
 variable "ecs_service_name" {
-  description = "The name of the ECS service."
+  description = "The name of the ECS service. Defaults to task_definition_name."
+  default     = null
   type        = string
 }
 
@@ -149,7 +150,7 @@ variable "service_discovery_namespace_id" {
 
 variable "service_discovery_name" {
   description = "The service discovery name to use."
-  default     = "nr-php-daemon"
+  default     = "php-daemon"
   type        = string
 }
 

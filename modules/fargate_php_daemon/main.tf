@@ -54,7 +54,7 @@ module "task_definition" {
 }
 
 resource "aws_ecs_service" "main" {
-  name = var.ecs_service_name
+  name = coalesce(var.ecs_service_name, var.task_definition_name)
 
   launch_type            = "FARGATE"
   task_definition        = module.task_definition.arn
@@ -92,7 +92,7 @@ module "security_group" {
   source  = "geekcell/security-group/aws"
   version = ">= 1.0.0, < 2.0.0"
 
-  name   = coalesce(var.security_group_name, "${var.ecs_service_name}-security-group")
+  name   = coalesce(var.security_group_name, "${var.task_definition_name}-ecs")
   vpc_id = coalesce(var.security_group_vpc, data.aws_subnet.first.vpc_id)
 
   ingress_rules = var.security_group_ingress_rules
