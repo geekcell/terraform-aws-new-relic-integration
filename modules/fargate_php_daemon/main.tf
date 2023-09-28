@@ -17,7 +17,7 @@ module "ecs_cluster" {
   count = var.enable_ecs_cluster ? 1 : 0
 
   source  = "geekcell/ecs-cluster/aws"
-  version = ">= 1.0.0, < 2.0.0"
+  version = ">= 2.0.0, < 3.0.0"
 
   name = var.ecs_cluster_name
   tags = var.tags
