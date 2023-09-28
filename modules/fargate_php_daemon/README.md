@@ -49,7 +49,7 @@ No outputs.
 ## Resources
 
 - resource.aws_ecs_service.main (modules/fargate_php_daemon/main.tf#56)
-- resource.aws_service_discovery_private_dns_namespace.main (modules/fargate_php_daemon/main.tf#105)
-- resource.aws_service_discovery_service.main (modules/fargate_php_daemon/main.tf#114)
+- resource.aws_service_discovery_private_dns_namespace.main (modules/fargate_php_daemon/main.tf#106)
+- resource.aws_service_discovery_service.main (modules/fargate_php_daemon/main.tf#115)
 - data source.aws_subnet.first (modules/fargate_php_daemon/main.tf#11)
 <!-- END_TF_DOCS -->
