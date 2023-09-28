@@ -82,7 +82,8 @@ resource "aws_ecs_service" "main" {
     }
   }
 
-  tags = var.tags
+  propagate_tags = "SERVICE"
+  tags           = var.tags
 }
 
 ## SECURITY GROUP
